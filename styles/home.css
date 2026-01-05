@@ -1,0 +1,115 @@
+/* Home Page Specific Styles */
+
+/* Hero Section Background */
+.hero {
+    background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
+                url('../images/gift-boxes-bg.jpg') center/cover;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/gift-boxes-overlay.png') center/contain no-repeat;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Category Cards Specific Styling */
+.categories-grid .category-card:nth-child(1) .category-image {
+    background: linear-gradient(135deg, #A36EE0, #B589E6);
+}
+
+.categories-grid .category-card:nth-child(2) .category-image {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.categories-grid .category-card:nth-child(3) .category-image {
+    background: linear-gradient(135deg, #A36EE0, #8E5AD0);
+}
+
+.categories-grid .category-card:nth-child(4) .category-image {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+/* Process Steps Animation */
+.step {
+    position: relative;
+}
+
+.step::after {
+    content: '';
+    position: absolute;
+    top: 40px;
+    right: -50%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #A36EE0, transparent);
+    opacity: 0.3;
+}
+
+.step:last-child::after {
+    display: none;
+}
+
+/* Testimonial Cards Hover Effect */
+.testimonial-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    font-size: 4rem;
+    color: #A36EE0;
+    opacity: 0.1;
+}
+
+/* Newsletter Section Gradient */
+.newsletter {
+    background: linear-gradient(135deg, #A36EE0 0%, #B589E6 50%, #feca57 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: float 20s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-30px, -30px) rotate(180deg); }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .step::after {
+        display: none;
+    }
+    
+    .process-steps {
+        gap: 2rem;
+    }
+    
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}

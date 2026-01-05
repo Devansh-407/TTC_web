@@ -1,0 +1,305 @@
+/* Gifts Page Specific Styles */
+
+/* Gifts Hero Section */
+.gifts-hero {
+    background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+                url('../images/gifts-hero-bg.jpg') center/cover;
+    padding: 8rem 0 4rem;
+    margin-top: 80px;
+}
+
+.gifts-hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.gifts-hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.gifts-hero-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* Gifts Collection Section */
+.gifts-collection {
+    padding: 4rem 0;
+    background: #f8f9fa;
+}
+
+.gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+}
+
+.gift-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.gift-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.gift-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.gift-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gift-card:hover .gift-image img {
+    transform: scale(1.05);
+}
+
+.gift-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #A36EE0;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.gift-content {
+    padding: 2rem;
+}
+
+.gift-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.gift-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.gift-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #A36EE0;
+    margin-bottom: 1.5rem;
+}
+
+.gift-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.gift-actions .btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+}
+
+.gift-actions .btn-outline {
+    border-color: #A36EE0;
+    color: #A36EE0;
+}
+
+.gift-actions .btn-outline:hover {
+    background: #A36EE0;
+    color: white;
+}
+
+/* Why Choose Gifts Section */
+.why-choose-gifts {
+    padding: 5rem 0;
+}
+
+.choose-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 2rem;
+}
+
+.feature-icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #A36EE0, #B589E6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover .feature-icon {
+    transform: scale(1.1);
+}
+
+.feature-icon img {
+    width: 50px;
+    height: 50px;
+    filter: brightness(0) invert(1);
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.feature-description {
+    color: #666;
+    line-height: 1.8;
+    font-size: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Gift Card Animations */
+.gift-card:nth-child(1) .gift-badge {
+    background: linear-gradient(135deg, #A36EE0, #feca57);
+}
+
+.gift-card:nth-child(2) .gift-badge {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.gift-card:nth-child(4) .gift-badge {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.gift-card:nth-child(7) .gift-badge {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+/* Hover Effects */
+.gift-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,107,157,0.1), rgba(255,142,142,0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.gift-card:hover::before {
+    opacity: 1;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .gifts-hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .gifts-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .gift-actions {
+        flex-direction: column;
+    }
+    
+    .choose-features {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .feature-item {
+        padding: 1.5rem;
+    }
+    
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .feature-icon img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Price Styling */
+.gift-price {
+    position: relative;
+    display: inline-block;
+}
+
+.gift-price::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, #A36EE0, transparent);
+}
+
+/* Button Styling for Gifts */
+.gift-actions .btn {
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.gift-actions .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Category Colors */
+.gift-card:nth-child(odd) .gift-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,107,157,0.1), transparent);
+    pointer-events: none;
+}
+
+.gift-card:nth-child(even) .gift-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102,126,234,0.1), transparent);
+    pointer-events: none;
+}

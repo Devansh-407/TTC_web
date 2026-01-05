@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache Force Reload - Heartfelt Gifts</title>
+    <link rel="stylesheet" href="styles/main.css?v=3">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .force-reload {
+            background: #ff4444;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔄 CACHE FORCE RELOAD</h1>
+    
+    <div class="test-section">
+        <h2>⚠️ BROWSER CACHE ISSUE DETECTED</h2>
+        <p>The browser is caching old CSS files. Updated to version ?v=3 to force reload.</p>
+        <button class="force-reload" onclick="location.reload(true)">Hard Refresh This Page</button>
+    </div>
+
+    <div class="test-section">
+        <h2>🎯 TEST COLORS NOW</h2>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px;">
+            <a href="index.html" class="btn btn-primary">Home</a>
+            <a href="about.html" class="btn btn-primary">About</a>
+            <a href="gifts.html" class="btn btn-primary">Gifts</a>
+            <a href="contact.html" class="btn btn-primary">Contact</a>
+            <a href="cart.html" class="btn btn-outline">Cart</a>
+            <a href="favourites.html" class="btn btn-outline">Favourites</a>
+            <a href="profile.html" class="btn btn-outline">Profile</a>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📋 CHANGES MADE</h2>
+        <ul>
+            <li><strong>All HTML files:</strong> Updated from ?v=2 to ?v=3</li>
+            <li><strong>CSS files:</strong> Already contain #A36EE0 (purple)</li>
+            <li><strong>Cache busting:</strong> Version 3 forces browser reload</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🔧 IF STILL PINK:</h2>
+        <ol>
+            <li>Click "Hard Refresh This Page" button above</li>
+            <li>Press Ctrl+Shift+R (or Cmd+Shift+R on Mac)</li>
+            <li>Open Developer Tools (F12) → Network tab → Check "Disable cache"</li>
+            <li>Clear all browser data and restart browser</li>
+            <li>Try in incognito/private window</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>✅ VERIFICATION</h2>
+        <p>All buttons above should be PURPLE (#A36EE0), not pink (#ff6b9d).</p>
+        <p>If you see purple, the color change is working correctly.</p>
+    </div>
+</body>
+</html>
