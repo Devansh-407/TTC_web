@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { useCart } from '@/lib/cart-store'
-import { Minus, Plus, X, ShoppingBag } from 'lucide-react'
+import { Minus, Plus, X, ShoppingBag, MessageCircle } from 'lucide-react'
 
 export default function CartPage() {
   const { items, updateQuantity, removeItem, total, clearCart } = useCart()
@@ -28,6 +28,21 @@ export default function CartPage() {
       setIsCheckingOut(false)
       alert('Checkout functionality would be implemented here')
     }, 1000)
+  }
+
+  const handleWhatsAppCheckout = () => {
+    if (items.length === 0) return
+    
+    // Create simple product list for WhatsApp message
+    const productList = items.map(item => 
+      `• ${item.name} x${item.quantity}`
+    ).join('\n')
+    
+    const message = `Hello! I want to order these products:\n\n${productList}`
+    
+    // Open WhatsApp with product details
+    const whatsappUrl = `https://wa.me/6396202262?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, '_blank')
   }
 
   if (items.length === 0) {
@@ -152,11 +167,11 @@ export default function CartPage() {
                 
                 <div className="mt-6 space-y-3">
                   <Button
-                    onClick={handleCheckout}
-                    disabled={isCheckingOut}
-                    className="w-full"
+                    onClick={handleWhatsAppCheckout}
+                    disabled={items.length === 0}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white"
                   >
-                    {isCheckingOut ? 'Processing...' : 'Proceed to Checkout'}
+                    Proceed
                   </Button>
                   
                   <Link href="/gifts">
