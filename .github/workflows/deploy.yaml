@@ -26,10 +26,15 @@ jobs:
           
           yarn set version stable
           
-          cd /home/ubuntu/projects
+          mkdir -p /home/ubuntu/projects/ && cd /home/ubuntu/projects/
+
+          echo 'Files in the directory'
+          ls -la
+
 
           rm -rf temp-tohfa-website 2> /dev/null || true && mkdir temp-tohfa-website
 
+          
 
           mkdir -p dev-tohfa-website && cd dev-tohfa-website && cp -R node_modules /home/ubuntu/projects/temp-tohfa-website" 2> /dev/null || true
           
