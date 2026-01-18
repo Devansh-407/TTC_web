@@ -36,7 +36,7 @@ jobs:
 
           mkdir -p dev-tohfa-website && cd dev-tohfa-website && cp -R node_modules /home/ubuntu/projects/temp-tohfa-website" 2> /dev/null || true
           
-          rsync -ah --no-o --no-g --no-perms --omit-dir-times -0 app public styles lib js hooks components next.config.mjs components.json next-env.d.ts postcss.config.mjs tsconfig.json package.json package-lock.json ubuntu@${{ env.SERVER_IP }}:/home/ubuntu/projects/temp-tohfa-website
+          rsync -ah --no-o --no-g --no-perms --omit-dir-times -0 app public styles lib js hooks components config next.config.mjs components.json next-env.d.ts postcss.config.mjs tsconfig.json package.json package-lock.json ubuntu@${{ env.SERVER_IP }}:/home/ubuntu/projects/temp-tohfa-website
           
           ssh -o StrictHostKeyChecking=no ubuntu@${{ env.SERVER_IP }} "cd /home/ubuntu/projects/temp-tohfa-website && npm install && npm run build"
 
