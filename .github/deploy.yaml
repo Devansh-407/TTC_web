@@ -1,0 +1,49 @@
+name: Deploy to Tohfa Creations Prod Server
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SERVER_IP: 13.126.60.107
+
+
+    steps:
+      - name: Set up SSH keys
+        uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.DEV_SERVER_PRIVATE_KEY }}
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Copy source code to temp-tohfa-website and try to build
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ env.SERVER_IP }} "echo 'Starting build process'
+          
+          yarn set version stable
+          
+          cd /home/ubuntu/projects
+
+          rm -rf temp-tohfa-website 2> /dev/null || true && mkdir temp-tohfa-website
+
+
+          mkdir -p dev-tohfa-website && cd dev-tohfa-website && cp -R node_modules /home/ubuntu/projects/temp-tohfa-website" 2> /dev/null || true
+          
+          rsync -ah --no-o --no-g --no-perms --omit-dir-times -0 app public styles lib js hooks components next.config.mjs components.json next-env.d.ts postcss.config.cjs postcss.config.js  tsconfig.json package.json yarn.lock ubuntu@${{ env.SERVER_IP }}:/home/ubuntu/projects/temp-tohfa-website
+          
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ env.SERVER_IP }} "cd /home/ubuntu/projects/temp-tohfa-website && yarn && yarn run build"
+
+
+      - name: Temp folder to dev folder and restart server
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ env.SERVER_IP }} "pm2 ls
+          
+          pm2 stop dev-tohfa-website-sl 2> /dev/null || true && pm2 delete dev-tohfa-website-sl 2> /dev/null || true
+          
+          cd /home/ubuntu/projects && rm -rf dev-tohfa-website && mv /home/ubuntu/projects/temp-tohfa-website /home/ubuntu/projects/dev-tohfa-website
+          
+          cd /home/ubuntu/projects/dev-tohfa-website && pm2 start 'yarn run serve:dev' --name dev-tohfa-website-sl"
