@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tohfacreations.in/sitemap.xml
+
+# Block common non-content paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /favicon.ico
+Disallow: /cart/
+Disallow: /orders/
+Disallow: /profile/
+Disallow: /signin/
+Disallow: /signup/
