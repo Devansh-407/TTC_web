@@ -1,0 +1,56 @@
+[
+  {
+    "name": "anniversary",
+    "displayName": "Anniversary Gifts",
+    "href": "/gifts?occasion=anniversary",
+    "description": "Celebrate your special day with romantic and personalized gifts that capture your love story",
+    "image": "/anniversary-gifts-romantic-setup.jpg",
+    "order": 1,
+    "active": true
+  },
+  {
+    "name": "birthday",
+    "displayName": "Birthday Surprises",
+    "href": "/gifts?occasion=birthday",
+    "description": "Make their special day unforgettable with unique, personalized gifts tailored to their personality",
+    "image": "/birthday-celebration-colorful-gifts.jpg",
+    "order": 2,
+    "active": true
+  },
+  {
+    "name": "proposal",
+    "displayName": "Proposal Ideas",
+    "href": "/gifts?occasion=proposal",
+    "description": "Create the perfect moment with romantic proposal setups and custom engagement gifts",
+    "image": "/romantic-proposal-setup-with-roses.jpg",
+    "order": 3,
+    "active": true
+  },
+  {
+    "name": "wedding",
+    "displayName": "Wedding Gifts",
+    "href": "/gifts?occasion=wedding",
+    "description": "Elegant and thoughtful gifts for the happy couple on their special day",
+    "image": "/wedding-gifts-elegant-setup.jpg",
+    "order": 4,
+    "active": true
+  },
+  {
+    "name": "graduation",
+    "displayName": "Graduation Gifts",
+    "href": "/gifts?occasion=graduation",
+    "description": "Celebrate academic achievements with memorable gifts for the graduate",
+    "image": "/graduation-gifts-celebration.jpg",
+    "order": 5,
+    "active": true
+  },
+  {
+    "name": "custom",
+    "displayName": "school gift",
+    "order": 1,
+    "description": "N/A",
+    "image": ".jpg",
+    "active": true,
+    "href": "/gifts?occasion=custom"
+  }
+]

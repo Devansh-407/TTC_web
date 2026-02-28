@@ -3,13 +3,10 @@ export interface Product {
   name: string
   description: string
   price: number
-  originalPrice?: number
-  image: string
-  category: string
-  rating: number
-  reviewCount: number
-  customizationLevel: "basic" | "standard" | "premium"
-  inStock: boolean
+  categoryId: string
+  imageUrl: string
+  featured?: boolean
+  createdAt: string
 }
 
 export interface CartItem {

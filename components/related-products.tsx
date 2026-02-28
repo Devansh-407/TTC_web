@@ -2,18 +2,19 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Star } from "lucide-react"
-import { products } from "@/lib/data"
+import { getProducts } from "@/lib/data"
 import Link from "next/link"
 
 interface RelatedProductsProps {
   currentProductId: string
-  category: string
+  categoryId: string
 }
 
-export function RelatedProducts({ currentProductId, category }: RelatedProductsProps) {
+export async function RelatedProducts({ currentProductId, categoryId }: RelatedProductsProps) {
+  const products = await getProducts()
   const relatedProducts = products
-    .filter((product) => product.id !== currentProductId && product.category === category)
-    .slice(0, 3)
+    .filter((product) => product.categoryId === categoryId && product.id !== currentProductId)
+    .slice(0, 4)
 
   if (relatedProducts.length === 0) {
     return null
@@ -34,15 +35,10 @@ export function RelatedProducts({ currentProductId, category }: RelatedProductsP
             <Card key={product.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300">
               <div className="relative aspect-square overflow-hidden">
                 <img
-                  src={product.image || "/placeholder.svg"}
+                  src={product.imageUrl || "/placeholder.svg"}
                   alt={product.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                {product.originalPrice && (
-                  <Badge className="absolute top-3 left-3 bg-purple-500 text-white">
-                    Save ${product.originalPrice - product.price}
-                  </Badge>
-                )}
               </div>
 
               <CardContent className="p-6 space-y-4">
@@ -53,36 +49,16 @@ export function RelatedProducts({ currentProductId, category }: RelatedProductsP
                   <p className="text-gray-600 text-sm leading-relaxed">{product.description}</p>
                 </div>
 
-                <div className="flex items-center space-x-2">
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-4 w-4 ${
-                          i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm text-gray-600">({product.reviewCount})</span>
-                </div>
-
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2">
-                      <span className="text-2xl font-bold text-gray-900">${product.price}</span>
-                      {product.originalPrice && (
-                        <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
-                      )}
+                      <span className="text-2xl font-bold text-gray-900">₹{product.price.toLocaleString('en-IN')}</span>
                     </div>
-                    <Badge variant="secondary" className="text-xs">
-                      {product.customizationLevel} customization
-                    </Badge>
                   </div>
                 </div>
 
                 <Button asChild className="w-full bg-purple-500 hover:bg-purple-600 text-white">
-                  <Link href={`/gifts/${product.id}`}>View Details</Link>
+                  <Link href={`/test-view/${product.id}`}>View Details</Link>
                 </Button>
               </CardContent>
             </Card>

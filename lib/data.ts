@@ -1,124 +1,49 @@
 import type { Product, Testimonial } from "./types"
 
-export const products: Product[] = [
-  {
-    id: "1",
-    name: "Vintage Rose Jewelry Box",
-    description: "Handcrafted wooden jewelry box with intricate rose patterns and velvet interior.",
-    price: 7499,
-    originalPrice: 9999,
-    image: "/vintage-wooden-jewelry-box-with-rose-patterns.jpg",
-    category: "gift-box",
-    rating: 4.8,
-    reviewCount: 127,
-    customizationLevel: "premium",
-    inStock: true,
-  },
-  {
-    id: "2",
-    name: "Memory Lane Album",
-    description: "Leather-bound photo album with personalized cover and acid-free pages.",
-    price: 5499,
-    originalPrice: 7199,
-    image: "/leather-photo-album-with-personalized-cover.jpg",
-    category: "gift-hamper",
-    rating: 4.9,
-    reviewCount: 89,
-    customizationLevel: "standard",
-    inStock: true,
-  },
-  {
-    id: "3",
-    name: "Custom Engraved Board",
-    description: "Personalized bamboo cutting board with custom family name engraving.",
-    price: 10499,
-    originalPrice: 13499,
-    image: "/bamboo-cutting-board-with-family-name-engraving.jpg",
-    category: "frame",
-    rating: 4.7,
-    reviewCount: 156,
-    customizationLevel: "premium",
-    inStock: true,
-  },
-  {
-    id: "4",
-    name: "Ballerina Music Box",
-    description: "Custom-made music box with hand-painted ballerina and personalized melody.",
-    price: 6299,
-    originalPrice: 7999,
-    image: "/ballerina-music-box-hand-painted.jpg",
-    category: "miniature",
-    rating: 4.6,
-    reviewCount: 94,
-    customizationLevel: "standard",
-    inStock: true,
-  },
-  {
-    id: "5",
-    name: "Golden Edge Dish",
-    description: "Hand-thrown ceramic jewelry dish with 24k gold rim detailing.",
-    price: 12499,
-    originalPrice: 14999,
-    image: "/ceramic-jewelry-dish-with-gold-rim.jpg",
-    category: "gift-box",
-    rating: 4.7,
-    reviewCount: 203,
-    customizationLevel: "premium",
-    inStock: true,
-  },
-  {
-    id: "6",
-    name: "Family Memory Frame",
-    description: "Custom engraved wooden frame with family name and special date.",
-    price: 4599,
-    originalPrice: 6299,
-    image: "/wooden-family-photo-frame-with-engraving.jpg",
-    category: "frame",
-    rating: 4.8,
-    reviewCount: 167,
-    customizationLevel: "basic",
-    inStock: true,
-  },
-  {
-    id: "7",
-    name: "Memory Albums",
-    description: "Beautifully crafted photo albums to preserve your precious memories.",
-    price: 6999,
-    originalPrice: 8999,
-    image: "/memory-photo-album-scrapbook.jpg",
-    category: "gift-hamper",
-    rating: 4.9,
-    reviewCount: 234,
-    customizationLevel: "premium",
-    inStock: true,
-  },
-  {
-    id: "8",
-    name: "Custom Photo Books",
-    description: "Personalized photo books with premium printing and binding.",
-    price: 4499,
-    originalPrice: 5999,
-    image: "/leather-photo-album-with-personalized-cover.jpg",
-    category: "gift-hamper",
-    rating: 4.7,
-    reviewCount: 189,
-    customizationLevel: "standard",
-    inStock: true,
-  },
-  {
-    id: "9",
-    name: "Anniversary Gifts",
-    description: "Romantic anniversary gift sets with personalized touches.",
-    price: 8999,
-    originalPrice: 11999,
-    image: "/anniversary-gifts-romantic-setup.jpg",
-    category: "bouquet",
-    rating: 4.9,
-    reviewCount: 156,
-    customizationLevel: "premium",
-    inStock: true,
-  },
-]
+// Fetch products from JSON files
+export async function getProducts(): Promise<Product[]> {
+  try {
+    const response = await fetch('/data/products.json');
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error loading products:', error);
+    return [];
+  }
+}
+
+// Fetch categories from JSON files
+export async function getCategories() {
+  try {
+    const response = await fetch('/data/categories.json');
+    if (!response.ok) {
+      throw new Error('Failed to fetch categories');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error loading categories:', error);
+    return [];
+  }
+}
+
+// Fetch occasions from JSON files
+export async function getOccasions() {
+  try {
+    const response = await fetch('/data/occasions.json');
+    if (!response.ok) {
+      throw new Error('Failed to fetch occasions');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error loading occasions:', error);
+    return [];
+  }
+}
+
+// For backward compatibility, keep the static data as fallback
+export const products: Product[] = []
 
 export const testimonials: Testimonial[] = [
   {
@@ -150,30 +75,4 @@ export const testimonials: Testimonial[] = [
   },
 ]
 
-export const categories = [
-  {
-    name: "Anniversary Gifts",
-    description:
-      "Celebrate your love story\nwith personalized keepsakes\nthat capture your cherished memories.",
-    image: "/anniversary-gifts-romantic-setup.jpg",
-    href: "/gifts?category=anniversary",
-  },
-  {
-    name: "Birthday Surprises",
-    description: "Make their special day unforgettable with unique, personalized gifts tailored to their personality.",
-    image: "/birthday-celebration-colorful-gifts.jpg",
-    href: "/gifts?category=birthday",
-  },
-  {
-    name: "Proposal Ideas",
-    description: "Create the perfect moment with romantic proposal setups and custom engagement gifts.",
-    image: "/romantic-proposal-setup-with-roses.jpg",
-    href: "/gifts?category=proposal",
-  },
-  {
-    name: "Memory Albums",
-    description: "Preserve your precious moments in beautifully crafted albums and scrapbooks that tell your story.",
-    image: "/memory-photo-album-scrapbook.jpg",
-    href: "/gifts?category=memory",
-  },
-]
+export const categories = [] // Use getCategories() instead

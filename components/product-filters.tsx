@@ -1,15 +1,48 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { getCategories, getOccasions } from "@/lib/data"
 
 export function ProductFilters() {
   const [occasion, setOccasion] = useState("all")
   const [category, setCategory] = useState("all")
+  const [categories, setCategories] = useState<any[]>([])
+  const [occasions, setOccasions] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadFilters() {
+      try {
+        const [categoriesData, occasionsData] = await Promise.all([
+          getCategories(),
+          getOccasions()
+        ])
+        setCategories(categoriesData)
+        setOccasions(occasionsData)
+      } catch (error) {
+        console.error('Error loading filters:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    loadFilters()
+  }, [])
 
   const clearFilters = () => {
     setOccasion("all")
     setCategory("all")
+  }
+
+  if (loading) {
+    return (
+      <div className="flex flex-wrap items-center gap-4 mb-8">
+        <div className="animate-pulse bg-gray-200 h-10 w-48 rounded"></div>
+        <div className="animate-pulse bg-gray-200 h-10 w-48 rounded"></div>
+        <div className="animate-pulse bg-gray-200 h-10 w-24 rounded"></div>
+      </div>
+    )
   }
 
   return (
@@ -23,11 +56,14 @@ export function ProductFilters() {
           className="border border-gray-300 rounded-md px-4 py-2 text-sm bg-white min-w-[180px]"
         >
           <option value="all">All Occasions</option>
-          <option value="anniversary">Anniversary</option>
-          <option value="birthday">Birthday</option>
-          <option value="proposal">Proposal</option>
-          <option value="wedding">Wedding</option>
-          <option value="graduation">Graduation</option>
+          {occasions
+            .filter(occ => occ.active)
+            .sort((a, b) => a.order - b.order)
+            .map((occ) => (
+              <option key={occ.name} value={occ.name}>
+                {occ.displayName}
+              </option>
+            ))}
         </select>
       </div>
 
@@ -40,11 +76,11 @@ export function ProductFilters() {
           className="border border-gray-300 rounded-md px-4 py-2 text-sm bg-white min-w-[180px]"
         >
           <option value="all">All Categories</option>
-          <option value="gift-hamper">Gift Hamper</option>
-          <option value="gift-box">Gift Box</option>
-          <option value="bouquet">Bouquet</option>
-          <option value="miniature">Miniature</option>
-          <option value="frame">Frame</option>
+          {categories.map((cat) => (
+            <option key={cat.name} value={cat.name}>
+              {cat.displayName}
+            </option>
+          ))}
         </select>
       </div>
 
