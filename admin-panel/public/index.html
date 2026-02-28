@@ -811,7 +811,8 @@
                     });
                     
                     if (response.ok) {
-                        occasions = occasions.filter(o => o.name !== occasionName);
+                        const result = await response.json();
+                        occasions = result.data || [];
                         renderOccasions();
                         showMessage('occasion-message', 'Occasion deleted successfully!');
                         addActivity('Deleted occasion');
@@ -1017,7 +1018,8 @@
                     });
                     
                     if (response.ok) {
-                        products = products.filter(p => p.id !== productId);
+                        const result = await response.json();
+                        products = result.data || [];
                         renderProducts();
                         renderDashboard();
                         showMessage('product-message', 'Product deleted successfully!');
@@ -1140,7 +1142,8 @@
                     });
                     
                     if (response.ok) {
-                        categories = categories.filter(c => c.name !== categoryName);
+                        const result = await response.json();
+                        categories = result.data || [];
                         renderCategories();
                         renderDashboard();
                         populateCategorySelect();

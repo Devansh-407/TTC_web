@@ -56,14 +56,18 @@ export function ProductFilters() {
           className="border border-gray-300 rounded-md px-4 py-2 text-sm bg-white min-w-[180px]"
         >
           <option value="all">All Occasions</option>
-          {occasions
-            .filter(occ => occ.active)
-            .sort((a, b) => a.order - b.order)
-            .map((occ) => (
-              <option key={occ.name} value={occ.name}>
-                {occ.displayName}
-              </option>
-            ))}
+          {occasions.length > 0 ? (
+            occasions
+              .filter(occ => occ.active)
+              .sort((a, b) => a.order - b.order)
+              .map((occ) => (
+                <option key={occ.name} value={occ.name}>
+                  {occ.displayName}
+                </option>
+              ))
+          ) : (
+            <option value="" disabled>No occasions available</option>
+          )}
         </select>
       </div>
 
@@ -76,11 +80,15 @@ export function ProductFilters() {
           className="border border-gray-300 rounded-md px-4 py-2 text-sm bg-white min-w-[180px]"
         >
           <option value="all">All Categories</option>
-          {categories.map((cat) => (
-            <option key={cat.name} value={cat.name}>
-              {cat.displayName}
-            </option>
-          ))}
+          {categories.length > 0 ? (
+            categories.map((cat) => (
+              <option key={cat.name} value={cat.name}>
+                {cat.displayName}
+              </option>
+            ))
+          ) : (
+            <option value="" disabled>No categories available</option>
+          )}
         </select>
       </div>
 

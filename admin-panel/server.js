@@ -139,7 +139,7 @@ app.delete('/api/products/:id', async (req, res) => {
         const updatedProducts = products.filter(p => p.id !== productId);
         const success = await writeDataFile('products.json', updatedProducts);
         if (success) {
-            res.json({ success: true, message: 'Product deleted successfully' });
+            res.json({ success: true, message: 'Product deleted successfully', data: updatedProducts });
         } else {
             res.status(500).json({ error: 'Failed to delete product' });
         }
@@ -153,10 +153,10 @@ app.delete('/api/categories/:id', async (req, res) => {
     try {
         const categories = await readDataFile('categories.json');
         const categoryId = req.params.id;
-        const updatedCategories = categories.filter(c => c.id !== categoryId);
+        const updatedCategories = categories.filter(c => c.id !== categoryId && c.name !== categoryId);
         const success = await writeDataFile('categories.json', updatedCategories);
         if (success) {
-            res.json({ success: true, message: 'Category deleted successfully' });
+            res.json({ success: true, message: 'Category deleted successfully', data: updatedCategories });
         } else {
             res.status(500).json({ error: 'Failed to delete category' });
         }
@@ -170,15 +170,56 @@ app.delete('/api/occasions/:id', async (req, res) => {
     try {
         const occasions = await readDataFile('occasions.json');
         const occasionId = req.params.id;
-        const updatedOccasions = occasions.filter(o => o.id !== occasionId);
+        const updatedOccasions = occasions.filter(o => o.id !== occasionId && o.name !== occasionId);
         const success = await writeDataFile('occasions.json', updatedOccasions);
         if (success) {
-            res.json({ success: true, message: 'Occasion deleted successfully' });
+            res.json({ success: true, message: 'Occasion deleted successfully', data: updatedOccasions });
         } else {
             res.status(500).json({ error: 'Failed to delete occasion' });
         }
     } catch (error) {
         res.status(500).json({ error: 'Failed to delete occasion' });
+    }
+});
+
+// Clear all data endpoint
+app.delete('/api/clear-all', async (req, res) => {
+    try {
+        const { type } = req.query;
+        let success = false;
+        let message = '';
+        
+        switch(type) {
+            case 'products':
+                success = await writeDataFile('products.json', []);
+                message = 'All products cleared successfully';
+                break;
+            case 'categories':
+                success = await writeDataFile('categories.json', []);
+                message = 'All categories cleared successfully';
+                break;
+            case 'occasions':
+                success = await writeDataFile('occasions.json', []);
+                message = 'All occasions cleared successfully';
+                break;
+            case 'all':
+                await writeDataFile('products.json', []);
+                await writeDataFile('categories.json', []);
+                await writeDataFile('occasions.json', []);
+                success = true;
+                message = 'All data cleared successfully';
+                break;
+            default:
+                return res.status(400).json({ error: 'Invalid type specified' });
+        }
+        
+        if (success) {
+            res.json({ success: true, message });
+        } else {
+            res.status(500).json({ error: 'Failed to clear data' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to clear data' });
     }
 });
 
