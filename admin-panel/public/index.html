@@ -803,22 +803,24 @@
             console.log('Deleting occasion:', occasionName);
             if (confirm('Are you sure you want to delete this occasion?')) {
                 try {
-                    const updatedOccasions = occasions.filter(o => o.name !== occasionName);
-                    const response = await fetch('/api/occasions', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(updatedOccasions)
+                    const response = await fetch(`/api/occasions/${occasionName}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
                     });
-
+                    
                     if (response.ok) {
-                        occasions = updatedOccasions;
+                        occasions = occasions.filter(o => o.name !== occasionName);
                         renderOccasions();
                         showMessage('occasion-message', 'Occasion deleted successfully!');
                         addActivity('Deleted occasion');
+                    } else {
+                        throw new Error('Failed to delete occasion');
                     }
                 } catch (error) {
                     console.error('Error deleting occasion:', error);
-                    addActivity('Error deleting occasion', 'error');
+                    showMessage('occasion-message', 'Error deleting occasion!', 'error');
                 }
             }
         }
@@ -1007,23 +1009,25 @@
             console.log('Deleting product:', productId);
             if (confirm('Are you sure you want to delete this product?')) {
                 try {
-                    const updatedProducts = products.filter(p => p.id !== productId);
-                    const response = await fetch('/api/products', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(updatedProducts)
+                    const response = await fetch(`/api/products/${productId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
                     });
-
+                    
                     if (response.ok) {
-                        products = updatedProducts;
+                        products = products.filter(p => p.id !== productId);
                         renderProducts();
                         renderDashboard();
                         showMessage('product-message', 'Product deleted successfully!');
                         addActivity('Deleted product');
+                    } else {
+                        throw new Error('Failed to delete product');
                     }
                 } catch (error) {
                     console.error('Error deleting product:', error);
-                    addActivity('Error deleting product', 'error');
+                    showMessage('product-message', 'Error deleting product!', 'error');
                 }
             }
         }
@@ -1128,24 +1132,26 @@
             console.log('Deleting category:', categoryName);
             if (confirm('Are you sure you want to delete this category?')) {
                 try {
-                    const updatedCategories = categories.filter(c => c.name !== categoryName);
-                    const response = await fetch('/api/categories', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(updatedCategories)
+                    const response = await fetch(`/api/categories/${categoryName}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
                     });
-
+                    
                     if (response.ok) {
-                        categories = updatedCategories;
+                        categories = categories.filter(c => c.name !== categoryName);
                         renderCategories();
                         renderDashboard();
                         populateCategorySelect();
                         showMessage('category-message', 'Category deleted successfully!');
                         addActivity('Deleted category');
+                    } else {
+                        throw new Error('Failed to delete category');
                     }
                 } catch (error) {
                     console.error('Error deleting category:', error);
-                    addActivity('Error deleting category', 'error');
+                    showMessage('category-message', 'Error deleting category!', 'error');
                 }
             }
         }

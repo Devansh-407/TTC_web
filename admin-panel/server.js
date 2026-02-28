@@ -131,6 +131,57 @@ app.post('/api/about', async (req, res) => {
     }
 });
 
+// DELETE routes for products
+app.delete('/api/products/:id', async (req, res) => {
+    try {
+        const products = await readDataFile('products.json');
+        const productId = req.params.id;
+        const updatedProducts = products.filter(p => p.id !== productId);
+        const success = await writeDataFile('products.json', updatedProducts);
+        if (success) {
+            res.json({ success: true, message: 'Product deleted successfully' });
+        } else {
+            res.status(500).json({ error: 'Failed to delete product' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to delete product' });
+    }
+});
+
+// DELETE routes for categories
+app.delete('/api/categories/:id', async (req, res) => {
+    try {
+        const categories = await readDataFile('categories.json');
+        const categoryId = req.params.id;
+        const updatedCategories = categories.filter(c => c.id !== categoryId);
+        const success = await writeDataFile('categories.json', updatedCategories);
+        if (success) {
+            res.json({ success: true, message: 'Category deleted successfully' });
+        } else {
+            res.status(500).json({ error: 'Failed to delete category' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to delete category' });
+    }
+});
+
+// DELETE routes for occasions
+app.delete('/api/occasions/:id', async (req, res) => {
+    try {
+        const occasions = await readDataFile('occasions.json');
+        const occasionId = req.params.id;
+        const updatedOccasions = occasions.filter(o => o.id !== occasionId);
+        const success = await writeDataFile('occasions.json', updatedOccasions);
+        if (success) {
+            res.json({ success: true, message: 'Occasion deleted successfully' });
+        } else {
+            res.status(500).json({ error: 'Failed to delete occasion' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to delete occasion' });
+    }
+});
+
 // Serve the admin panel
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
