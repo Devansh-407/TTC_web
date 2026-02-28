@@ -803,7 +803,8 @@
             console.log('Deleting occasion:', occasionName);
             if (confirm('Are you sure you want to delete this occasion?')) {
                 try {
-                    const response = await fetch(`/api/occasions/${occasionName}`, {
+                    // Use main site API instead of local admin server
+                    const response = await fetch(`https://ttc-main.vercel.app/api/occasions/${occasionName}`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json'
@@ -1010,7 +1011,8 @@
             console.log('Deleting product:', productId);
             if (confirm('Are you sure you want to delete this product?')) {
                 try {
-                    const response = await fetch(`/api/products/${productId}`, {
+                    // Use main site API instead of local admin server
+                    const response = await fetch(`https://ttc-main.vercel.app/api/products/${productId}`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json'
@@ -1134,7 +1136,8 @@
             console.log('Deleting category:', categoryName);
             if (confirm('Are you sure you want to delete this category?')) {
                 try {
-                    const response = await fetch(`/api/categories/${categoryName}`, {
+                    // Use main site API instead of local admin server
+                    const response = await fetch(`https://ttc-main.vercel.app/api/categories/${categoryName}`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json'

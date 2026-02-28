@@ -1,17 +1,1 @@
-[
-  {
-    "name": "miniature",
-    "displayName": "Miniature",
-    "href": "/gifts?category=miniature",
-    "description": "Handcrafted miniature gifts and collectibles for special memories",
-    "image": "/miniature-handcrafted-collectibles.jpg",
-    "imageUrl": "/miniature-handcrafted-collectibles.jpg"
-  },
-  {
-    "name": "gift-box",
-    "displayName": "testbox",
-    "description": "N/A",
-    "href": "/gifts?category=gift-box",
-    "imageUrl": ".jpg"
-  }
-]
+[]
