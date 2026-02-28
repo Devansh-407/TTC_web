@@ -629,11 +629,12 @@
         // Load all data
         async function loadData() {
             try {
+                // Use main site API instead of local admin server
                 const [productsRes, categoriesRes, occasionsRes, aboutRes] = await Promise.all([
-                    fetch('/api/products'),
-                    fetch('/api/categories'),
-                    fetch('/api/occasions'),
-                    fetch('/api/about')
+                    fetch('https://ttc-main.vercel.app/api/products'),
+                    fetch('https://ttc-main.vercel.app/api/categories'),
+                    fetch('https://ttc-main.vercel.app/api/occasions'),
+                    fetch('https://ttc-main.vercel.app/api/about')
                 ]);
                 
                 products = await productsRes.json();
@@ -780,7 +781,8 @@
                     updatedOccasions = [...occasions, occasionData];
                 }
 
-                const response = await fetch('/api/occasions', {
+                // Use main site API instead of local admin server
+                const response = await fetch('https://ttc-main.vercel.app/api/occasions', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(updatedOccasions)
@@ -792,9 +794,12 @@
                     hideOccasionForm();
                     showMessage('occasion-message', editingOccasion ? 'Occasion updated successfully!' : 'Occasion added successfully!');
                     addActivity(`${editingOccasion ? 'Updated' : 'Added'} occasion: ${occasionData.displayName}`);
+                } else {
+                    throw new Error('Failed to save occasion');
                 }
             } catch (error) {
                 console.error('Error saving occasion:', error);
+                showMessage('occasion-message', 'Error saving occasion!', 'error');
                 addActivity('Error saving occasion', 'error');
             }
         }
@@ -987,7 +992,8 @@
                     updatedProducts = [...products, productData];
                 }
 
-                const response = await fetch('/api/products', {
+                // Use main site API instead of local admin server
+                const response = await fetch('https://ttc-main.vercel.app/api/products', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(updatedProducts)
@@ -1000,9 +1006,12 @@
                     hideProductForm();
                     showMessage('product-message', editingProduct ? 'Product updated successfully!' : 'Product added successfully!');
                     addActivity(`${editingProduct ? 'Updated' : 'Added'} product: ${productData.name}`);
+                } else {
+                    throw new Error('Failed to save product');
                 }
             } catch (error) {
                 console.error('Error saving product:', error);
+                showMessage('product-message', 'Error saving product!', 'error');
                 addActivity('Error saving product', 'error');
             }
         }
@@ -1111,7 +1120,8 @@
                     updatedCategories = [...categories, categoryData];
                 }
 
-                const response = await fetch('/api/categories', {
+                // Use main site API instead of local admin server
+                const response = await fetch('https://ttc-main.vercel.app/api/categories', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(updatedCategories)
@@ -1125,9 +1135,12 @@
                     hideCategoryForm();
                     showMessage('category-message', editingCategory ? 'Category updated successfully!' : 'Category added successfully!');
                     addActivity(`${editingCategory ? 'Updated' : 'Added'} category: ${categoryData.displayName}`);
+                } else {
+                    throw new Error('Failed to save category');
                 }
             } catch (error) {
                 console.error('Error saving category:', error);
+                showMessage('category-message', 'Error saving category!', 'error');
                 addActivity('Error saving category', 'error');
             }
         }
