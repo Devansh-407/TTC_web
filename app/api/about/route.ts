@@ -49,7 +49,7 @@ async function readAboutData() {
 }
 
 // Helper function to write JSON file
-async function writeAboutData(data) {
+async function writeAboutData(data: any) {
   try {
     // Ensure directory exists
     const dir = path.dirname(ABOUT_FILE);
@@ -101,7 +101,7 @@ export async function GET() {
 }
 
 // POST handler - save about data
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   try {
     const aboutData = await request.json();
     
