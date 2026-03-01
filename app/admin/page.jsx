@@ -21,9 +21,9 @@ export default function AdminPanel() {
   const loadData = async () => {
     try {
       const [productsRes, categoriesRes, aboutRes] = await Promise.all([
-        fetch('/api/products'),
-        fetch('/api/categories'), 
-        fetch('/api/about')
+        fetch('https://ttc-main.vercel.app/api/products'),
+        fetch('https://ttc-main.vercel.app/api/categories'), 
+        fetch('https://ttc-main.vercel.app/api/about')
       ]);
       
       const productsData = await productsRes.json();
@@ -42,7 +42,7 @@ export default function AdminPanel() {
 
   const saveProducts = async (updatedProducts) => {
     try {
-      const response = await fetch('/api/products', {
+      const response = await fetch('https://ttc-main.vercel.app/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedProducts)
@@ -60,7 +60,7 @@ export default function AdminPanel() {
 
   const saveCategories = async (updatedCategories) => {
     try {
-      const response = await fetch('/api/categories', {
+      const response = await fetch('https://ttc-main.vercel.app/api/categories', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedCategories)
@@ -78,7 +78,7 @@ export default function AdminPanel() {
 
   const saveAboutData = async (updatedAboutData) => {
     try {
-      const response = await fetch('/api/about', {
+      const response = await fetch('https://ttc-main.vercel.app/api/about', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedAboutData)
