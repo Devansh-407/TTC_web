@@ -3,7 +3,6 @@
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "rootDirectory": "TTC",
   "functions": {
     "app/api/**/*.ts": {
       "maxDuration": 30
