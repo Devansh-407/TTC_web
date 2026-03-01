@@ -54,7 +54,27 @@ export default function AdminDashboard() {
 
   const saveData = async (type: string, data: any[]) => {
     try {
-      const response = await fetch(`https://ttc-main.vercel.app/api/${type}`, {
+      // Try local API first, then fallback to absolute URL
+      let url = `/api/${type}`;
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+          showMessage(`${type} updated successfully!`);
+          await loadData();
+          return true;
+        }
+      } catch (localError) {
+        console.log('Local API failed, trying remote API');
+        url = `https://ttc-main.vercel.app/api/${type}`;
+      }
+      
+      // Try remote API as fallback
+      const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

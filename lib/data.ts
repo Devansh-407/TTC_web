@@ -1,9 +1,19 @@
 import type { Product, Testimonial } from "./types"
 
-// Fetch products from API
+// Fetch products from API with fallback to local JSON
 export async function getProducts(): Promise<Product[]> {
   try {
     const response = await fetch('https://ttc-main.vercel.app/api/products');
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.log('API failed, falling back to local JSON');
+  }
+  
+  // Fallback to local JSON
+  try {
+    const response = await fetch('/data/products.json');
     if (!response.ok) {
       throw new Error('Failed to fetch products');
     }
@@ -14,10 +24,20 @@ export async function getProducts(): Promise<Product[]> {
   }
 }
 
-// Fetch categories from API
+// Fetch categories from API with fallback to local JSON
 export async function getCategories() {
   try {
     const response = await fetch('https://ttc-main.vercel.app/api/categories');
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.log('API failed, falling back to local JSON');
+  }
+  
+  // Fallback to local JSON
+  try {
+    const response = await fetch('/data/categories.json');
     if (!response.ok) {
       throw new Error('Failed to fetch categories');
     }
@@ -28,10 +48,20 @@ export async function getCategories() {
   }
 }
 
-// Fetch occasions from API
+// Fetch occasions from API with fallback to local JSON
 export async function getOccasions() {
   try {
     const response = await fetch('https://ttc-main.vercel.app/api/occasions');
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.log('API failed, falling back to local JSON');
+  }
+  
+  // Fallback to local JSON
+  try {
+    const response = await fetch('/data/occasions.json');
     if (!response.ok) {
       throw new Error('Failed to fetch occasions');
     }
