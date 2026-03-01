@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "id": "1",
+    "name": "Anniversary Memory Box",
+    "description": "A beautiful wooden box filled with personalized memories and photos from your special journey together.",
+    "price": 2999,
+    "categoryId": "gift-hamper",
+    "imageUrl": "/products/anniversary-box.jpg",
+    "featured": true,
+    "createdAt": "2024-01-01",
+    "rating": 5,
+    "reviewCount": 12,
+    "inStock": true,
+    "customizationLevel": "premium"
+  },
+  {
+    "id": "2", 
+    "name": "Birthday Photo Album",
+    "description": "Handcrafted photo album with custom cover design and personalized pages for your precious memories.",
+    "price": 1999,
+    "categoryId": "photo-album",
+    "imageUrl": "/products/birthday-album.jpg",
+    "featured": true,
+    "createdAt": "2024-01-02",
+    "rating": 4,
+    "reviewCount": 8,
+    "inStock": true,
+    "customizationLevel": "standard"
+  }
+]

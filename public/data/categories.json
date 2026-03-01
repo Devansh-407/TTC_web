@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "name": "gift-hamper",
+    "displayName": "Gift Hampers",
+    "description": "Beautifully curated gift boxes filled with personalized items and memories.",
+    "imageUrl": "/categories/gift-hamper.jpg"
+  },
+  {
+    "name": "photo-album", 
+    "displayName": "Photo Albums",
+    "description": "Handcrafted photo albums with custom designs and personalized pages.",
+    "imageUrl": "/categories/photo-album.jpg"
+  },
+  {
+    "name": "bouquet",
+    "displayName": "Flower Bouquets", 
+    "description": "Fresh flower arrangements with personalized touches for special occasions.",
+    "imageUrl": "/categories/bouquet.jpg"
+  }
+]

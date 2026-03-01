@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "name": "anniversary",
+    "displayName": "Anniversary",
+    "description": "Celebrate your special day with personalized gifts and memories.",
+    "image": "/occasions/anniversary.jpg",
+    "active": true,
+    "order": 1
+  },
+  {
+    "name": "birthday",
+    "displayName": "Birthday", 
+    "description": "Make their birthday unforgettable with custom gifts and surprises.",
+    "image": "/occasions/birthday.jpg",
+    "active": true,
+    "order": 2
+  },
+  {
+    "name": "wedding",
+    "displayName": "Wedding",
+    "description": "Perfect gifts for the special couple starting their journey together.",
+    "image": "/occasions/wedding.jpg", 
+    "active": true,
+    "order": 3
+  }
+]
