@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 
-const PRODUCTS_FILE = path.join(process.cwd(), 'public', 'data', 'products.json');
+const OCCASIONS_FILE = path.join(process.cwd(), 'public', 'data', 'occasions.json');
 
 // Helper functions
 async function readJSON(filePath: string) {
@@ -18,7 +18,7 @@ async function readJSON(filePath: string) {
 async function writeJSON(filePath: string, data: any) {
     try {
         await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
-        console.log('✅ Products saved successfully');
+        console.log('✅ Occasions saved successfully');
         return true;
     } catch (error) {
         console.error('Error writing JSON file:', error);
@@ -38,18 +38,18 @@ export async function OPTIONS() {
     });
 }
 
-// GET - Fetch products
+// GET - Fetch occasions
 export async function GET() {
     try {
-        const products = await readJSON(PRODUCTS_FILE);
-        return NextResponse.json(products, {
+        const occasions = await readJSON(OCCASIONS_FILE);
+        return NextResponse.json(occasions, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
             },
         });
     } catch (error) {
-        console.error('Error fetching products:', error);
-        return NextResponse.json({ error: 'Failed to fetch products' }, { 
+        console.error('Error fetching occasions:', error);
+        return NextResponse.json({ error: 'Failed to fetch occasions' }, { 
             status: 500,
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -58,20 +58,20 @@ export async function GET() {
     }
 }
 
-// POST - Update products
+// POST - Update occasions
 export async function POST(request: NextRequest) {
     try {
-        const products = await request.json();
-        const success = await writeJSON(PRODUCTS_FILE, products);
+        const occasions = await request.json();
+        const success = await writeJSON(OCCASIONS_FILE, occasions);
         
         if (success) {
-            return NextResponse.json({ success: true, message: 'Products updated successfully' }, {
+            return NextResponse.json({ success: true, message: 'Occasions updated successfully' }, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                 },
             });
         } else {
-            return NextResponse.json({ error: 'Failed to save products' }, { 
+            return NextResponse.json({ error: 'Failed to save occasions' }, { 
                 status: 500,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -79,8 +79,8 @@ export async function POST(request: NextRequest) {
             });
         }
     } catch (error) {
-        console.error('Error updating products:', error);
-        return NextResponse.json({ error: 'Failed to update products' }, { 
+        console.error('Error updating occasions:', error);
+        return NextResponse.json({ error: 'Failed to update occasions' }, { 
             status: 500,
             headers: {
                 'Access-Control-Allow-Origin': '*',

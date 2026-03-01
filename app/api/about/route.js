@@ -65,16 +65,37 @@ async function writeAboutData(data) {
   }
 }
 
+// OPTIONS - Handle CORS preflight requests
+export async function OPTIONS() {
+    return new NextResponse(null, {
+        status: 200,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },
+    });
+}
+
 // GET handler - fetch about data
 export async function GET() {
   try {
     const aboutData = await readAboutData();
-    return NextResponse.json(aboutData);
+    return NextResponse.json(aboutData, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
   } catch (error) {
     console.error('Error fetching about data:', error);
     return NextResponse.json(
       { error: 'Failed to fetch about data' },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
     );
   }
 }
@@ -88,7 +109,12 @@ export async function POST(request) {
     if (!aboutData || typeof aboutData !== 'object') {
       return NextResponse.json(
         { error: 'Invalid about data format' },
-        { status: 400 }
+        { 
+          status: 400,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
       );
     }
 
@@ -98,18 +124,32 @@ export async function POST(request) {
       return NextResponse.json({ 
         success: true, 
         message: 'About data saved successfully' 
+      }, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
       });
     } else {
       return NextResponse.json(
         { error: 'Failed to save about data' },
-        { status: 500 }
+        { 
+          status: 500,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
       );
     }
   } catch (error) {
     console.error('Error saving about data:', error);
     return NextResponse.json(
       { error: 'Failed to save about data' },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
     );
   }
 }

@@ -54,7 +54,7 @@ export default function AdminDashboard() {
 
   const saveData = async (type: string, data: any[]) => {
     try {
-      const response = await fetch(`/api/${type}`, {
+      const response = await fetch(`https://ttc-main.vercel.app/api/${type}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

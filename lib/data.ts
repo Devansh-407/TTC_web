@@ -1,9 +1,9 @@
 import type { Product, Testimonial } from "./types"
 
-// Fetch products from JSON files
+// Fetch products from API
 export async function getProducts(): Promise<Product[]> {
   try {
-    const response = await fetch('/data/products.json');
+    const response = await fetch('https://ttc-main.vercel.app/api/products');
     if (!response.ok) {
       throw new Error('Failed to fetch products');
     }
@@ -14,10 +14,10 @@ export async function getProducts(): Promise<Product[]> {
   }
 }
 
-// Fetch categories from JSON files
+// Fetch categories from API
 export async function getCategories() {
   try {
-    const response = await fetch('/data/categories.json');
+    const response = await fetch('https://ttc-main.vercel.app/api/categories');
     if (!response.ok) {
       throw new Error('Failed to fetch categories');
     }
@@ -28,10 +28,10 @@ export async function getCategories() {
   }
 }
 
-// Fetch occasions from JSON files
+// Fetch occasions from API
 export async function getOccasions() {
   try {
-    const response = await fetch('/data/occasions.json');
+    const response = await fetch('https://ttc-main.vercel.app/api/occasions');
     if (!response.ok) {
       throw new Error('Failed to fetch occasions');
     }
