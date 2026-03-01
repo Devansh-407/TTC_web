@@ -76,12 +76,12 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                     <Star
                       key={i}
                       className={`h-5 w-5 ${
-                        i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
+                        i < Math.floor(product.rating || 0) ? "text-yellow-400 fill-current" : "text-gray-300"
                       }`}
                     />
                   ))}
                 </div>
-                <span className="text-gray-600">({product.reviewCount} reviews)</span>
+                <span className="text-gray-600">({product.reviewCount || 0} reviews)</span>
               </div>
 
               <p className="text-gray-700 leading-relaxed">{product.description}</p>

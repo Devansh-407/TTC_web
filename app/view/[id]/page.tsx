@@ -46,10 +46,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="flex items-center space-x-2">
               <div className="flex text-yellow-400">
                 {[...Array(5)].map((_, i) => (
-                  <span key={i}>{i < Math.floor(product.rating) ? '⭐' : '☆'}</span>
+                  <span key={i}>{i < Math.floor(product.rating || 0) ? '⭐' : '☆'}</span>
                 ))}
               </div>
-              <span className="text-gray-600">({product.reviewCount} reviews)</span>
+              <span className="text-gray-600">({product.reviewCount || 0} reviews)</span>
             </div>
 
             {/* Price */}

@@ -42,7 +42,7 @@ export function GalleryGrid() {
       case "price-high":
         return b.price - a.price
       case "rating":
-        return b.rating - a.rating
+        return (b.rating || 0) - (a.rating || 0)
       default:
         return 0
     }

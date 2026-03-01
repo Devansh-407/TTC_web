@@ -38,7 +38,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Product Image */}
           <div className="aspect-square overflow-hidden rounded-lg">
             <img
-              src={product.image}
+              src={product.imageUrl}
               alt={product.name}
               className="w-full h-full object-cover"
             />
@@ -56,14 +56,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     <span
                       key={i}
                       className={`text-yellow-400 ${
-                        i < Math.floor(product.rating) ? "text-yellow-400" : "text-gray-300"
+                        i < Math.floor(product.rating || 0) ? "text-yellow-400" : "text-gray-300"
                       }`}
                     >
                       ⭐
                     </span>
                   ))}
                 </div>
-                <span className="text-sm text-gray-600">({product.reviewCount} reviews)</span>
+                <span className="text-sm text-gray-600">({product.reviewCount || 0} reviews)</span>
               </div>
 
               <div className="flex items-center space-x-4 mb-6">

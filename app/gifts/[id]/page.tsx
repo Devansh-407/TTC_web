@@ -92,13 +92,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   <Star
                     key={i}
                     className={`h-5 w-5 ${
-                      i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
+                      i < Math.floor(product.rating || 0) ? "text-yellow-400 fill-current" : "text-gray-300"
                     }`}
                   />
                 ))}
               </div>
-              <span className="text-lg font-semibold text-gray-900">{product.rating}</span>
-              <span className="text-gray-600">({product.reviewCount} reviews)</span>
+              <span className="text-lg font-semibold text-gray-900">{product.rating || 0}</span>
+              <span className="text-gray-600">({product.reviewCount || 0} reviews)</span>
             </div>
 
             {/* Price Section */}
@@ -139,16 +139,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="flex justify-between py-2 border-b">
                   <span className="text-gray-600">Category</span>
-                  <span className="font-medium capitalize">{product.category.replace('-', ' ')}</span>
+                  <span className="font-medium capitalize">{(product.category || 'general').replace('-', ' ')}</span>
                 </div>
                 <div className="flex justify-between py-2 border-b">
                   <span className="text-gray-600">Customization</span>
-                  <span className="font-medium capitalize">{product.customizationLevel}</span>
+                  <span className="font-medium capitalize">{product.customizationLevel || 'basic'}</span>
                 </div>
                 <div className="flex justify-between py-2 border-b">
                   <span className="text-gray-600">Availability</span>
-                  <span className={`font-medium ${product.inStock ? 'text-green-600' : 'text-red-600'}`}>
-                    {product.inStock ? 'In Stock' : 'Out of Stock'}
+                  <span className={`font-medium ${(product.inStock ?? true) ? 'text-green-600' : 'text-red-600'}`}>
+                    {(product.inStock ?? true) ? 'In Stock' : 'Out of Stock'}
                   </span>
                 </div>
                 <div className="flex justify-between py-2 border-b">

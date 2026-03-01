@@ -5,8 +5,15 @@ export interface Product {
   price: number
   categoryId: string
   imageUrl: string
+  image?: string // Alternative field name
   featured?: boolean
   createdAt: string
+  rating?: number
+  reviewCount?: number
+  originalPrice?: number
+  category?: string
+  inStock?: boolean
+  customizationLevel?: string
 }
 
 export interface CartItem {
